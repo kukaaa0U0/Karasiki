@@ -6,7 +6,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "out/build/x64-debug/CMakeFiles/3.31.6-msvc6/CMakeSystem.cmake"
+			"path" : "out/build/x64-Debug/CMakeFiles/3.31.6-msvc6/CMakeSystem.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -20,11 +20,11 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "out/build/x64-debug/CMakeFiles/3.31.6-msvc6/CMakeCCompiler.cmake"
+			"path" : "out/build/x64-Debug/CMakeFiles/3.31.6-msvc6/CMakeCCompiler.cmake"
 		},
 		{
 			"isGenerated" : true,
-			"path" : "out/build/x64-debug/CMakeFiles/3.31.6-msvc6/CMakeCXXCompiler.cmake"
+			"path" : "out/build/x64-Debug/CMakeFiles/3.31.6-msvc6/CMakeCXXCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -88,7 +88,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "out/build/x64-debug/CMakeFiles/3.31.6-msvc6/CMakeRCCompiler.cmake"
+			"path" : "out/build/x64-Debug/CMakeFiles/3.31.6-msvc6/CMakeRCCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -184,7 +184,7 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "C:/Users/Pc/source/Games/CalmWaters/out/build/x64-debug",
+		"build" : "C:/Users/Pc/source/Games/CalmWaters/out/build/x64-Debug",
 		"source" : "C:/Users/Pc/source/Games/CalmWaters"
 	},
 	"version" : 

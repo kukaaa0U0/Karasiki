@@ -76,7 +76,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\Pc\source\Games\CalmWaters -BC:\Users\Pc\source\Games\CalmWaters\out\build\x64-debug
+  command = "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\Pc\source\Games\CalmWaters -BC:\Users\Pc\source\Games\CalmWaters\out\build\x64-Debug
   description = Re-running CMake...
   generator = 1
 
