@@ -1,0 +1,3 @@
+C:/Users/Pc/source/Games/CalmWaters/out/build/x64-debug/CMakeFiles/CalmWaters.dir
+C:/Users/Pc/source/Games/CalmWaters/out/build/x64-debug/CMakeFiles/edit_cache.dir
+C:/Users/Pc/source/Games/CalmWaters/out/build/x64-debug/CMakeFiles/rebuild_cache.dir
