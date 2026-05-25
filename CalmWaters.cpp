@@ -30,7 +30,7 @@ bool CalmWaters::init(const char* title, int width, int height) {
     }
 
     isRunning = true;
-
+    lastTick = SDL_GetTicks();
     player = new Player();
     player->init(350.0f, 400.0f, 100.0f, 50.0f);
 
@@ -48,8 +48,12 @@ void CalmWaters::handleEvents() {
 }
 
 void CalmWaters::update() {
+    Uint64 now = SDL_GetTicks();
+    float dt = (now - lastTick) / 1000.0f;
+    lastTick = now;
+
     if (player) {
-        player->update(inputHandler); // передаём inputHandler в игрока
+        player->update(dt, inputHandler);
     }
 }
 

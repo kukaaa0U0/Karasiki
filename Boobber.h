@@ -17,6 +17,7 @@ public:
     void cast(float targetX, float targetY);  // заброс
     void update(float dt);
     void render(SDL_Renderer* renderer);
+    void resetCatch();
 
     void startReeling();       // игрок начал тянуть (нажал пробел при клёве)
     bool isCaught() const;     // рыба поймана?

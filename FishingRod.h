@@ -1,6 +1,6 @@
 #pragma once
 #include <SDL3/SDL.h>
-#include "Bobber.h"
+#include "Boobber.h"
 #include "InputHandler.h"
 
 class FishingRod {

@@ -44,4 +44,8 @@ void FishingRod::onSpacePressed(const InputHandler& input) {
 }
 
 bool FishingRod::hasCatch() const { return bobber.isCaught(); }
-Fish FishingRod::collectFish() { return bobber.getCaughtFish(); }
+Fish FishingRod::collectFish() {
+    Fish f = bobber.getCaughtFish();
+    bobber.resetCatch();   // сбрасываем флаг после того как забрали
+    return f;
+}

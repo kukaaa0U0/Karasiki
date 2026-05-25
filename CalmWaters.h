@@ -19,6 +19,7 @@ public:
     bool running() const { return isRunning; }
 
 private:
+    Uint64 lastTick = 0;   // для подсчёта dt
     bool isRunning;
     SDL_Window* window;
     SDL_Renderer* renderer;

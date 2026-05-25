@@ -81,6 +81,8 @@ void Bobber::startReeling() {
         state = BobberState::REELING;
     }
 }
-
+void Bobber::resetCatch() {
+    caught = false;
+}
 bool Bobber::isCaught() const { return caught; }
 Fish Bobber::getCaughtFish() const { return pendingFish; }
