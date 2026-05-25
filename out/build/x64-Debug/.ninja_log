@@ -1,7 +1,6 @@
 # ninja log v6
-16	632	8008421934163725	CMakeFiles/CalmWaters.dir/CalmWaters.cpp.obj	4f4e2cb950a32a2d
-20	637	8008421934203773	CMakeFiles/CalmWaters.dir/Player.cpp.obj	9e4fb51c07e821ea
-637	849	8008421940379318	CalmWaters.exe	41d6a0c402d1e985
-3	148	8008426879751476	build.ninja	91b9edbc7fc85873
-23	667	8008426879301066	CMakeFiles/CalmWaters.dir/CalmWaters.cpp.obj	4f4e2cb950a32a2d
-668	798	8008426885746922	CalmWaters.exe	41d6a0c402d1e985
+16	924	8014528306272330	CMakeFiles/CalmWaters.dir/CalmWaters.cpp.obj	4f4e2cb950a32a2d
+9	642	8014516656982952	CMakeFiles/CalmWaters.dir/Player.cpp.obj	9e4fb51c07e821ea
+924	1048	8014528315349283	CalmWaters.exe	79237233bb9a6416
+3	148	8014531042157200	build.ninja	91b9edbc7fc85873
+20	437	8014528306312358	CMakeFiles/CalmWaters.dir/InputHandler.cpp.obj	fa7edad6f8ca4c6

@@ -19,8 +19,14 @@ void Player::init(float x, float y, float width, float height) {
     std::cout << "Игрок инициализирован на позиции: " << x << ", " << y << std::endl;
 }
 
-void Player::update() {
-    // Здесь позже будет логика движения
+void Player::update(const InputHandler& input) {
+    // Если зажат классный сканкод стрелочки вправо или кнопки D
+    if (input.isKeyDown(SDL_SCANCODE_D) || input.isKeyDown(SDL_SCANCODE_RIGHT)) {
+        destRect.x += 4.0f; // Лодка плывет вправо
+    }
+    if (input.isKeyDown(SDL_SCANCODE_A) || input.isKeyDown(SDL_SCANCODE_LEFT)) {
+        destRect.x -= 4.0f; // Лодка плывет влево
+    }
 }
 
 void Player::render(SDL_Renderer* renderer) {

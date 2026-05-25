@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL3/SDL.h>
+#include "InputHandler.h"
 
 enum class PlayerState {
     IDLE,
@@ -15,7 +16,7 @@ public:
     ~Player();
 
     void init(float x, float y, float width, float height);
-    void update();
+    void update(const InputHandler& input);
     void render(SDL_Renderer* renderer);
     void clean();
 

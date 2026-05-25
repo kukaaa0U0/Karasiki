@@ -65,6 +65,22 @@ build CMakeFiles\CalmWaters.dir\Player.cpp.obj: CXX_COMPILER__CalmWaters_unscann
   TARGET_COMPILE_PDB = CMakeFiles\CalmWaters.dir\
   TARGET_PDB = CalmWaters.pdb
 
+build CMakeFiles\CalmWaters.dir\InputHandler.cpp.obj: CXX_COMPILER__CalmWaters_unscanned_Debug C$:\Users\Pc\source\Games\CalmWaters\InputHandler.cpp || cmake_object_order_depends_target_CalmWaters
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20
+  INCLUDES = -IC:\SDL3\SDL3-3.4.8\include
+  OBJECT_DIR = CMakeFiles\CalmWaters.dir
+  OBJECT_FILE_DIR = CMakeFiles\CalmWaters.dir
+  TARGET_COMPILE_PDB = CMakeFiles\CalmWaters.dir\
+  TARGET_PDB = CalmWaters.pdb
+
+build CMakeFiles\CalmWaters.dir\GameTimer.cpp.obj: CXX_COMPILER__CalmWaters_unscanned_Debug C$:\Users\Pc\source\Games\CalmWaters\GameTimer.cpp || cmake_object_order_depends_target_CalmWaters
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20
+  INCLUDES = -IC:\SDL3\SDL3-3.4.8\include
+  OBJECT_DIR = CMakeFiles\CalmWaters.dir
+  OBJECT_FILE_DIR = CMakeFiles\CalmWaters.dir
+  TARGET_COMPILE_PDB = CMakeFiles\CalmWaters.dir\
+  TARGET_PDB = CalmWaters.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target CalmWaters
@@ -73,7 +89,7 @@ build CMakeFiles\CalmWaters.dir\Player.cpp.obj: CXX_COMPILER__CalmWaters_unscann
 #############################################
 # Link the executable CalmWaters.exe
 
-build CalmWaters.exe: CXX_EXECUTABLE_LINKER__CalmWaters_Debug CMakeFiles\CalmWaters.dir\CalmWaters.cpp.obj CMakeFiles\CalmWaters.dir\Player.cpp.obj
+build CalmWaters.exe: CXX_EXECUTABLE_LINKER__CalmWaters_Debug CMakeFiles\CalmWaters.dir\CalmWaters.cpp.obj CMakeFiles\CalmWaters.dir\Player.cpp.obj CMakeFiles\CalmWaters.dir\InputHandler.cpp.obj CMakeFiles\CalmWaters.dir\GameTimer.cpp.obj
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = SDL3.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
