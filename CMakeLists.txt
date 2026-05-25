@@ -11,7 +11,7 @@ endif()
 
 
 
-add_executable (CalmWaters "CalmWaters.cpp" "CalmWaters.h" "Player.cpp" "Player.h" "InputHandler.h" "InputHandler.cpp" "GameTimer.h" "GameTimer.cpp" "Fish.h" "Fish.cpp" "Boobber.h" "Boobber.cpp")
+add_executable (CalmWaters "CalmWaters.cpp" "CalmWaters.h" "Player.cpp" "Player.h" "InputHandler.h" "InputHandler.cpp" "GameTimer.h" "GameTimer.cpp" "Fish.h" "Fish.cpp" "Boobber.h" "Boobber.cpp" "FishingRod.h" "FishingRod.cpp")
 
 target_include_directories(CalmWaters PRIVATE "C:/SDL3/SDL3-3.4.8/include")
 
