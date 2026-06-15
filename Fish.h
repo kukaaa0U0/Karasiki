@@ -9,12 +9,12 @@ enum class FishType {
 };
 
 struct Fish {
-    FishType type;
-    float weight;        // кг
-    float biteDelay;     // через сколько секунд клюнет
+    FishType type = FishType::CARP;
+    float weight = 0.0f;     // кг
+    float biteDelay = 0.0f;  // через сколько секунд клюнет
     std::string name;
 
-    // Генерирует случайную рыбу
     static Fish random();
     std::string toString() const;
+    int getScore() const;    // очки за рыбу
 };

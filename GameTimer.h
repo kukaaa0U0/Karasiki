@@ -6,6 +6,7 @@ public:
     void start();
     bool hasElapsed(float seconds) const;
     float getElapsed() const;
+    void reset() { start(); }
 
 private:
     Uint64 startTick = 0;

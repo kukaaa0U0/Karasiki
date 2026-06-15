@@ -1,11 +1,21 @@
 #include "FishingRod.h"
 #include <iostream>
-#include "Boobber.h"
 
 void FishingRod::init(float playerX, float playerY) {
-    rodX = playerX + 80.0f;   // конец удочки правее лодки
+    rodX = playerX + 80.0f;
     rodY = playerY - 10.0f;
     bobber.init(rodX, rodY);
+}
+
+void FishingRod::syncPosition(float playerX, float playerY) {
+    // ќбновл€ем базовую позицию удочки (при движении лодки)
+    // Ќо только если поплавок у лодки, чтобы не дЄргать во врем€ заброса
+    rodX = playerX + 80.0f;
+    rodY = playerY - 10.0f;
+    BobberState bs = bobber.getState();
+    if (bs == BobberState::IDLE) {
+        bobber.init(rodX, rodY);
+    }
 }
 
 void FishingRod::update(float dt, const InputHandler& input) {
@@ -14,38 +24,44 @@ void FishingRod::update(float dt, const InputHandler& input) {
 }
 
 void FishingRod::render(SDL_Renderer* renderer) {
-    // Ћеска от удилища до поплавка
     BobberState bs = bobber.getState();
-    if (bs != BobberState::IDLE) {
-        SDL_SetRenderDrawColor(renderer, 200, 200, 200, 180);
-        // SDL_RenderLine Ч рисуем леску (тонка€ лини€)
-        SDL_RenderLine(renderer, rodX, rodY,
-            bobber.getState() != BobberState::IDLE ? rodX + 80 : rodX,
-            rodY + 60);
+
+    // –исуем леску от кончика удилища до поплавка
+    if (bs != BobberState::IDLE && bs != BobberState::CAUGHT) {
+        SDL_SetRenderDrawColor(renderer, 210, 210, 210, 200);
+        SDL_RenderLine(renderer,
+            rodX, rodY,
+            bobber.getPosX(), bobber.getPosY());
     }
+
+    // —амо удилище Ч коричнева€ палочка
+    SDL_SetRenderDrawColor(renderer, 100, 60, 20, 255);
+    SDL_RenderLine(renderer, rodX - 30, rodY + 10, rodX, rodY);
+
     bobber.render(renderer);
 }
 
 void FishingRod::onSpacePressed(const InputHandler& input) {
     bool spaceNow = input.isKeyDown(SDL_SCANCODE_SPACE);
 
-    if (spaceNow && !spaceWasDown) {   // именно нажатие, не удержание
+    if (spaceNow && !spaceWasDown) {
         BobberState bs = bobber.getState();
-        if (bs == BobberState::IDLE) {
-            // «аброс Ч фиксированна€ точка правее лодки
-            bobber.cast(rodX + 150.0f, rodY + 80.0f);
+        if (bs == BobberState::IDLE || bs == BobberState::CAUGHT) {
+            // «аброс Ч чуть вправо и вниз от кончика
+            bobber.cast(rodX + 160.0f, rodY + 90.0f);
         }
         else if (bs == BobberState::BITING) {
             bobber.startReeling();
         }
-        // ѕри FLOATING Ч ничего, ждЄм клЄв
+        // FLOATING Ч ждЄм клЄв, ничего не делаем
     }
     spaceWasDown = spaceNow;
 }
 
 bool FishingRod::hasCatch() const { return bobber.isCaught(); }
+
 Fish FishingRod::collectFish() {
     Fish f = bobber.getCaughtFish();
-    bobber.resetCatch();   // сбрасываем флаг после того как забрали
+    bobber.resetCatch();
     return f;
 }

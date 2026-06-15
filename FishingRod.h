@@ -8,14 +8,18 @@ public:
     void init(float playerX, float playerY);
     void update(float dt, const InputHandler& input);
     void render(SDL_Renderer* renderer);
+    void syncPosition(float playerX, float playerY);  // обновляем позицию при движении лодки
 
     bool hasCatch() const;
-    Fish collectFish();   // забираем пойманную рыбу
+    Fish collectFish();
+
+    BobberState getBobberState() const { return bobber.getState(); }
+    float getBiteProgress() const { return bobber.getBiteProgress(); }
 
 private:
     Bobber bobber;
-    float rodX = 0, rodY = 0;   // конец удилища (откуда летит леска)
+    float rodX = 0, rodY = 0;
 
-    bool spaceWasDown = false;   // чтобы не считать удержание как спам
+    bool spaceWasDown = false;
     void onSpacePressed(const InputHandler& input);
 };
