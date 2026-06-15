@@ -1,7 +1,6 @@
 #include "InputHandler.h"
 
 void InputHandler::update() {
-    // SDL_PollEvent убран отсюда — события обрабатываются только в CalmWaters::handleEvents()
     keyboardState = SDL_GetKeyboardState(nullptr);
 }
 

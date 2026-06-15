@@ -8,54 +8,80 @@ void FishingRod::init(float playerX, float playerY) {
 }
 
 void FishingRod::syncPosition(float playerX, float playerY) {
-    // ќбновл€ем базовую позицию удочки (при движении лодки)
-    // Ќо только если поплавок у лодки, чтобы не дЄргать во врем€ заброса
     rodX = playerX + 80.0f;
     rodY = playerY - 10.0f;
-    BobberState bs = bobber.getState();
-    if (bs == BobberState::IDLE) {
+    if (bobber.getState() == BobberState::IDLE) {
         bobber.init(rodX, rodY);
     }
 }
 
-void FishingRod::update(float dt, const InputHandler& input) {
-    onSpacePressed(input);
+void FishingRod::update(float dt, const InputHandler& input,
+    float mouseX, float mouseY, bool mouseClicked) {
+    handleInput(input, mouseX, mouseY, mouseClicked);
     bobber.update(dt);
+    if (bobber.isLineBroken()) rodLineBroke = true;
+}
+
+void FishingRod::handleInput(const InputHandler& input,
+    float mouseX, float mouseY, bool mouseClicked) {
+    bool spaceNow = input.isKeyDown(SDL_SCANCODE_SPACE);
+    BobberState bs = bobber.getState();
+
+    // Ќажатие SPACE
+    if (spaceNow && !spaceWasDown) {
+        if (bs == BobberState::IDLE || bs == BobberState::CAUGHT) {
+            bobber.castRandom(rodX, rodY);
+        }
+        else if (bs == BobberState::BITING) {
+            bobber.startReeling();
+        }
+    }
+
+    // ”держание SPACE во врем€ вытаскивани€ Ч ослабл€ем нат€жение
+    if (spaceNow && bs == BobberState::REELING) {
+        bobber.pullLine(1.0f / 60.0f);
+    }
+    spaceWasDown = spaceNow;
+
+    //  лик мышью Ч заброс в точку
+    if (mouseClicked && !mouseWasClick) {
+        if (bs == BobberState::IDLE || bs == BobberState::CAUGHT) {
+            bobber.castTo(mouseX, mouseY);
+        }
+        else if (bs == BobberState::BITING) {
+            bobber.startReeling();
+        }
+    }
+    mouseWasClick = mouseClicked;
 }
 
 void FishingRod::render(SDL_Renderer* renderer) {
     BobberState bs = bobber.getState();
 
-    // –исуем леску от кончика удилища до поплавка
+    // Ћеска
     if (bs != BobberState::IDLE && bs != BobberState::CAUGHT) {
-        SDL_SetRenderDrawColor(renderer, 210, 210, 210, 200);
-        SDL_RenderLine(renderer,
-            rodX, rodY,
-            bobber.getPosX(), bobber.getPosY());
+        // ÷вет лески по нат€жению
+        if (bs == BobberState::REELING) {
+            float t = bobber.getTension();
+            Uint8 rv = (Uint8)(180 + t * 75);
+            Uint8 gv = (Uint8)(180 - t * 150);
+            SDL_SetRenderDrawColor(renderer, rv, gv, 80, 220);
+        }
+        else {
+            SDL_SetRenderDrawColor(renderer, 200, 200, 200, 160);
+        }
+        SDL_RenderLine(renderer, (int)rodX, (int)rodY,
+            (int)bobber.getPosX(), (int)bobber.getPosY());
     }
 
-    // —амо удилище Ч коричнева€ палочка
-    SDL_SetRenderDrawColor(renderer, 100, 60, 20, 255);
-    SDL_RenderLine(renderer, rodX - 30, rodY + 10, rodX, rodY);
+    // ”дилище
+    SDL_SetRenderDrawColor(renderer, 120, 75, 25, 255);
+    SDL_RenderLine(renderer, (int)(rodX - 35), (int)(rodY + 12), (int)rodX, (int)rodY);
+    // —ветла€ полоска
+    SDL_SetRenderDrawColor(renderer, 180, 130, 60, 180);
+    SDL_RenderLine(renderer, (int)(rodX - 33), (int)(rodY + 10), (int)(rodX - 2), (int)(rodY + 2));
 
     bobber.render(renderer);
-}
-
-void FishingRod::onSpacePressed(const InputHandler& input) {
-    bool spaceNow = input.isKeyDown(SDL_SCANCODE_SPACE);
-
-    if (spaceNow && !spaceWasDown) {
-        BobberState bs = bobber.getState();
-        if (bs == BobberState::IDLE || bs == BobberState::CAUGHT) {
-            // «аброс Ч чуть вправо и вниз от кончика
-            bobber.cast(rodX + 160.0f, rodY + 90.0f);
-        }
-        else if (bs == BobberState::BITING) {
-            bobber.startReeling();
-        }
-        // FLOATING Ч ждЄм клЄв, ничего не делаем
-    }
-    spaceWasDown = spaceNow;
 }
 
 bool FishingRod::hasCatch() const { return bobber.isCaught(); }

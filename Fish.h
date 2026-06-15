@@ -1,20 +1,16 @@
 #pragma once
 #include <string>
 
-enum class FishType {
-    CARP,    //  арп    Ч медленный клЄв, т€жЄлый
-    PERCH,   // ќкунь   Ч быстрый клЄв, лЄгкий
-    PIKE,    // ўука    Ч редкий, но большой
-    BREAM    // Ћещ     Ч средний
-};
+enum class FishType { CARP, PERCH, PIKE, BREAM, CRUCIAN, CATFISH };
 
 struct Fish {
-    FishType type = FishType::CARP;
-    float weight = 0.0f;     // кг
-    float biteDelay = 0.0f;  // через сколько секунд клюнет
+    FishType    type = FishType::CARP;
+    float       weight = 0.0f;
+    float       biteDelay = 0.0f;
     std::string name;
+    int         rarity = 1; // 1=обычна€ 2=редка€ 3=легендарна€
 
     static Fish random();
     std::string toString() const;
-    int getScore() const;    // очки за рыбу
+    int getScore() const;
 };
