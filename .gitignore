@@ -400,3 +400,7 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 out/build/x64-Debug/.ninja_log
+/html
+/out
+/out/build
+/rtf
